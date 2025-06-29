@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import QRCode from 'qrcode';
+import Image from 'next/image';
 
 export default function QRCodeGenerator() {
   const [text, setText] = useState('');
@@ -18,7 +19,9 @@ export default function QRCodeGenerator() {
 
   return (
     <div className="w-full max-w-xl mx-auto bg-white rounded-2xl shadow-xl p-8">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">QR Kod Oluştur</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+        QR Kod Oluştur
+      </h2>
       <input
         type="text"
         placeholder="Bir bağlantı veya metin girin"
@@ -35,7 +38,14 @@ export default function QRCodeGenerator() {
 
       {qrCodeUrl && (
         <div className="mt-6 text-center">
-          <img src={qrCodeUrl} alt="QR Kodu" className="mx-auto w-48 h-48" />
+          <Image
+            src={qrCodeUrl}
+            alt="QR Kodu"
+            width={192}
+            height={192}
+            className="mx-auto"
+            unoptimized
+          />
           <a
             href={qrCodeUrl}
             download="qr-kod.png"
